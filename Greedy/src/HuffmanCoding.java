@@ -8,7 +8,7 @@ import java.util.*;
 //to one character is not prefix of code assigned to any other character.
 //This is how Huffman Coding makes sure that there is no ambiguity when decoding the generated bit stream.
 
-class node{
+class node {
 	int frequency;
 	node left;
 	node right;
@@ -18,60 +18,51 @@ class node{
 
 public class HuffmanCoding {
 
-	static void printCodes(node temp,String s)
-	{
-		if(temp.left==null && temp.right==null)
-		{
-			System.out.println(temp.name+" "+s);
-		}
-		else
-		{
-			printCodes(temp.left, s+"0");
-			printCodes(temp.right, s+"1");
+	static void printCodes(node temp, String s) {
+		if (temp.left == null && temp.right == null) {
+			System.out.println(temp.name + " " + s);
+		} else {
+			printCodes(temp.left, s + "0");
+			printCodes(temp.right, s + "1");
 		}
 	}
-	
-	static void createCodes(PriorityQueue<node> minHeap,node[] letters)
-	{
-		node n1,n2;
-		while(true)
-		{
-			n1=minHeap.poll();
-			n2=minHeap.poll();
-			if(n2==null)
+
+	static void createCodes(PriorityQueue<node> minHeap, node[] letters) {
+		node n1, n2;
+		while (true) {
+			n1 = minHeap.poll();
+			n2 = minHeap.poll();
+			if (n2 == null)
 				break;
-			node nev=new node();
-			nev.frequency=n1.frequency+n2.frequency;
-			nev.left=n1;
-			nev.right=n2;
+			node nev = new node();
+			nev.frequency = n1.frequency + n2.frequency;
+			nev.left = n1;
+			nev.right = n2;
 			minHeap.add(nev);
 		}
-		node root=n1;
+		node root = n1;
 		System.out.println("The codes are as follows:");
-		printCodes(root,"");
+		printCodes(root, "");
 	}
-	
-	
+
 	public static void main(String[] args) {
-		Scanner scan=new Scanner(System.in);
+		Scanner scan = new Scanner(System.in);
 		System.out.println("Enter the number of letters:");
-		int count=scan.nextInt();
-		PriorityQueue<node> minHeap=new PriorityQueue<node>(count,new Comparator<node>() {
-			public int compare(node a,node b)
-			{
-				return a.frequency-b.frequency;
+		int count = scan.nextInt();
+		PriorityQueue<node> minHeap = new PriorityQueue<node>(count, new Comparator<node>() {
+			public int compare(node a, node b) {
+				return a.frequency - b.frequency;
 			}
 		});
-		node[] letters=new node[count];
+		node[] letters = new node[count];
 		System.out.println("Enter the letters and frequencies:");
-		for(int i=0;i<count;i++)
-		{
-			letters[i]=new node();
-			letters[i].name=scan.next();
-			letters[i].frequency=scan.nextInt();
+		for (int i = 0; i < count; i++) {
+			letters[i] = new node();
+			letters[i].name = scan.next();
+			letters[i].frequency = scan.nextInt();
 			minHeap.add(letters[i]);
 		}
-		createCodes(minHeap,letters);
+		createCodes(minHeap, letters);
 	}
 
 }
