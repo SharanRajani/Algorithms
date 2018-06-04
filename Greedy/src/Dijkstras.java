@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-public class Dijsktras {
+public class Dijkstras {
 
 	static Scanner scan = new Scanner(System.in);
 
