@@ -70,6 +70,7 @@ public class BellmanFord {
 	static void calDist(edge[] edgeList, int count, int[][] adMatrix) {
 		int[] dist = new int[count];
 		int[] parent = new int[count];
+		boolean flag;
 		for (int i = 0; i < count; i++) {
 			dist[i] = Integer.MAX_VALUE;
 		}
@@ -77,17 +78,22 @@ public class BellmanFord {
 		int src = scan.nextInt();
 		dist[src] = 0;
 		parent[src] = src;
+		int w=0;
 		for (int i = 0; i < count - 1; i++) {// check whether dist[u] is not infinity because dist[u] + -ve weight can
-												// be less
-			for (int j = 0; j < edgeList.length; j++) {// than infinity
+												// be less than infinity
+			flag=false;
+			for (int j = 0; j < edgeList.length; j++) {
 				if ((dist[edgeList[j].u] != Integer.MAX_VALUE)
 						&& (dist[edgeList[j].v] > dist[edgeList[j].u] + edgeList[j].w)) {
+					flag=true;
 					dist[edgeList[j].v] = dist[edgeList[j].u] + edgeList[j].w;
 					parent[edgeList[j].v] = edgeList[j].u;
 				}
 			}
+			if(!flag)
+				break;
 		}
-		boolean flag = false;
+		flag = false;
 		for (int j = 0; j < edgeList.length; j++) {
 			if ((dist[edgeList[j].u] != Integer.MAX_VALUE)
 					&& (dist[edgeList[j].v] > dist[edgeList[j].u] + edgeList[j].w)) {
