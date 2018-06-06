@@ -8,6 +8,7 @@ public class LongestCommonSequence {
 
 	static Scanner scan = new Scanner(System.in);
 
+	// Naive Method
 	static int recursivelcs(char[] c1, char[] c2, int m, int n) {
 		if (m == 0 || n == 0)
 			return 0;
@@ -17,6 +18,20 @@ public class LongestCommonSequence {
 			return Math.max(recursivelcs(c1, c2, m, n - 1), recursivelcs(c1, c2, m - 1, n));
 	}
 
+	// storing solutions of recurring subproblems using memoization
+	static int mrecursivelcs(char[] c1, char[] c2, int m, int n, int[][] matrix) {
+		if (matrix[m][n] == -1) {
+			if (m == 0 || n == 0) {
+				matrix[m][n] = 0;
+			} else if (c1[m - 1] == c2[n - 1])
+				matrix[m][n] = 1 + mrecursivelcs(c1, c2, m - 1, n - 1, matrix);
+			else
+				matrix[m][n] = Math.max(mrecursivelcs(c1, c2, m, n - 1, matrix), mrecursivelcs(c1, c2, m - 1, n, matrix));
+		}
+		return matrix[m][n];
+	}
+
+	// storing solutions of recurring subproblems using tabulation
 	static void lcs(char[] c1, char[] c2, int m, int n) {
 		int[][] matrix = new int[m + 1][n + 1];
 		for (int i = 0; i <= m; i++) {
@@ -60,6 +75,12 @@ public class LongestCommonSequence {
 		char[] c1 = s1.toCharArray();
 		char[] c2 = s2.toCharArray();
 		lcs(c1, c2, c1.length, c2.length);
+		/*
+		 * int[][] matrix = new int[c1.length + 1][c2.length + 1]; for (int i = 0; i <=
+		 * c1.length; i++) { for (int j = 0; j <= c2.length; j++) { matrix[i][j] = -1; }
+		 * } int max = mrecursivelcs(c1, c2, c1.length, c2.length, matrix);
+		 * System.out.println("The length of the Longest Common Sequence is:" + max);
+		 */
 		/*
 		 * int max = recursivelcs(c1, c2, c1.length, c2.length);
 		 * System.out.println("The length of the Longest Common Sequence is:" + max);
