@@ -1,5 +1,7 @@
 import java.util.*;
 
+//https://www.geeksforgeeks.org/knapsack-problem/
+
 public class Knapsack01 {
 
 	static Scanner scan = new Scanner(System.in);
