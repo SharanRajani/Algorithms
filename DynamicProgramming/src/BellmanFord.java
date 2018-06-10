@@ -12,7 +12,7 @@ public class BellmanFord {
 
 	static edge[] create(int[][] adMatrix) {
 		int count = 0;
-		System.out.println("Enter the weight of each of the edges considering a undirected Graph:");
+		System.out.println("Enter the weight of each of the edges considering a Directed Graph:");
 		System.out.println("Enter 0 if edge does not exist.");
 		for (int i = 0; i < adMatrix.length; i++) {
 			for (int j = 0; j < adMatrix[0].length; j++) {
