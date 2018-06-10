@@ -12,7 +12,7 @@ public class Kruskals {
 
 	static edge[] create(int[][] adMatrix) {
 		int count = 0;
-		System.out.println("Enter the weight of each of the edges considering a directed Graph:");
+		System.out.println("Enter the weight of each of the edges considering a Undirected Graph:");
 		System.out.println("Enter 0 if edge does not exist.");
 		for (int i = 0; i < adMatrix.length; i++) {
 			for (int j = i + 1; j < adMatrix[0].length; j++) {

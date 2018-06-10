@@ -5,7 +5,7 @@ public class Dijkstras {
 	static Scanner scan = new Scanner(System.in);
 
 	static void create(int[][] adMatrix) {
-		System.out.println("Enter the weight of each of the edges considering a directed Graph:");
+		System.out.println("Enter the weight of each of the edges considering a Undirected Graph:");
 		System.out.println("Enter 0 if edge does not exist.");
 		for (int i = 0; i < adMatrix.length; i++) {
 			for (int j = i + 1; j < adMatrix[0].length; j++) {
